@@ -1,16 +1,29 @@
 import React from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
-
+const electron = (window as any).electron;
 const WorkPage = () => {
         const navigate = useNavigate();
-  return (
+        const handleClick = () => navigate('/work');
+        const home = () => navigate('/');
+        const homeDirectory = electron.homeDir();
+        return (
     <div style={workPageStyle}>
+      <h1 style={headingStyle}>hello</h1>
       <h1 style={headingStyle}>Welcome to Scalics Work Page</h1>
-      <p style={paragraphStyle}>
-        Explore our latest projects and ideas.
+      <p style={paragraphStyle}>Explore our latest projects and ideas @ {homeDirectory}.<br />
+
       </p>
-      <p onClick={() => navigate('/')} style={paragraphStyle}>Home</p>
+      <button  style={paragraphStyle}>Home</button>
+      <div>
+        <button onClick={home} style={linkStyle}>Home</button>
+        <button onClick={handleClick} style={linkStyle}>Work</button>
+      </div>
+      <main style={mainStyle}>
+        <Outlet />
+      </main>
+
     </div>
+    
   );
 };
 
@@ -38,5 +51,13 @@ const linkStyle: React.CSSProperties = {
         letterSpacing: '2px',
         cursor: 'pointer',
         color: '#f5f5f5',
+      };
+      const mainStyle: React.CSSProperties = {
+        width: '80%',
+        padding: '40px',
+        borderRadius: '10px',
+        backgroundColor: '#16213e',
+        boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)',
+        textAlign: 'center',
       };
 export default WorkPage;
