@@ -5,6 +5,9 @@ import { BarChart, Cloud, Droplets, Sun, Thermometer, Wind } from 'lucide-react'
 import { Card, CardContent } from '@mui/material';
 import Button from '@mui/material/Button';
 
+import News from "./home_components/news";
+
+
 export default function SmartMirror() {
   const [time, setTime] = useState(new Date());
 
@@ -91,7 +94,7 @@ export default function SmartMirror() {
       </div>
 
       {/* Landscape Widget */}
-      <Card className="relative overflow-hidden h-32 bg-white/10 rounded-xl backdrop-blur-sm">
+      {/* <Card className="relative overflow-hidden h-32 bg-white/10 rounded-xl backdrop-blur-sm">
         <CardContent>
           <img
             src="/placeholder.svg?height=200&width=400"
@@ -103,7 +106,9 @@ export default function SmartMirror() {
             <p className="text-xs text-white/60">Connected Innovations Notes.55</p>
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
+
+      <News />
 
       {/* Chart */}
       <div className="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
