@@ -1,8 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
+import search from './logo.svg'
 import logo from './logo.svg';
 import './App.css';
+import { useStateContext } from './Context';
 
 function App() {
+  const [input, setInput] = useState('');
+  const {weather} = useStateContext();
+  console.log(weather);
   return (
     <div className="App">
       <header className="App-header">

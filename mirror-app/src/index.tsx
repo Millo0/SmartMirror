@@ -9,20 +9,29 @@ import Work from './Components/Work';
 import HomePage from './Components/Homepage';
 import Dashboardhome from "./Components/Dashboardhome"
 import HomeMirror from "./Components/HomeMirror"
+import  WeatherComponent  from './Components/assets/WeatherCard/WeatherComponent';
+import { StateContextProvider } from "./Context/index";
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+
    <React.StrictMode>
        {/*<Work />*/}
        {/*<HomePage/>*/}
        {/*<Dashboardhome />*/}
+      {/* <BackgroundLayout/>*/}
       <HashRouter>
+      <StateContextProvider>
+         {/*<App/>*/}
+      <WeatherComponent/>
+      </StateContextProvider>
      <Routes>
      
      <Route  path="/" element={<HomeMirror />} />
         <Route  path="/" element={<HomePage />} />
-         <Route  path="/Work" element={<Work />} />
+        <Route  path="/Work" element={<Work />} />
          
          <Route  path="/app" element={<App />}/>
           
