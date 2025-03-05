@@ -1,14 +1,18 @@
 footer {
   /* text-align: center; */
   padding: 10px;
-  background-color: #f9f9f9;
-  border-top: 1px solid #ccc;
+  /* background-color: #f9f9f9; */
+  /* border-top: 1px solid #ccc; */
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  /* color: #333; */
   position: relative;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
 }
 
+/* html {
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+} */
 
 
 .fade-enter {
@@ -33,13 +37,7 @@ footer {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-footer {
-  display: flex;
-  justify-content: space-between; /* Spaces out the news and image */
-  align-items: center; /* Vertically aligns the items */
-  padding: 20px;
-  background-color: #f4f4f4;
-}
+
 
 .news-container {
   flex: 1; /* Takes the available space */
@@ -61,13 +59,7 @@ footer {
 
 
 
-footer {
-  display: flex;
-  justify-content: space-between; /* Spaces out the news and image */
-  align-items: center; /* Vertically aligns the items */
-  padding: 20px;
-  background-color: #f4f4f4;
-}
+
 
 .news-image-container {
   display: flex;
@@ -97,14 +89,6 @@ footer {
 
 
 
-footer {
-  display: grid;
-  grid-template-columns: 1fr 200px; /* Two columns: 1 for text and 1 for image */
-  gap: 20px; /* Space between the text and the image */
-  padding: 20px;
-  background-color: #f4f4f4;
-  align-items: center; /* Vertically align items */
-}
 
 .news-image-container {
   display: grid;

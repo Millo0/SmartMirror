@@ -3,7 +3,7 @@ import { Canvas, useFrame,useLoader } from "@react-three/fiber";
 import { OrbitControls,useTexture,Text } from "@react-three/drei";
 import * as THREE from "three";
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
-
+import WeatherComponent from "../../home_components/weather";
 //import { OrbitControls } from "three-stdlib"; code in js.
 
 
@@ -38,12 +38,12 @@ import { TextureLoader } from 'three/src/loaders/TextureLoader';
 
 // function animate() {
 //     requestAnimationFrame(animate);
-  
+
 //     earthMesh.rotation.y += 0.002;
 //     earthMesh.rotation.x += 0.02;
 //     renderer.render(scene, camera);
 //   }
-  
+
 //   animate();
 //   function handleWindowResize () {
 //     camera.aspect = window.innerWidth / window.innerHeight;
@@ -54,21 +54,26 @@ import { TextureLoader } from 'three/src/loaders/TextureLoader';
 
 
 //import bla from '../../../../public/texture/75acb3ebf6cc25845fa52981eadfb4a1f91d61b7_2_690x345.jpeg'
- 
+
 function Earth() {
   // Ref for the Earth mesh to handle rotation
   const earthRef = useRef();
-  const [temperature] = useState(25); // Example temperature value
+  let [temperature] = useState(25); // Example temperature value
+  let WeatherComponentt = WeatherComponent();
+  if (WeatherComponentt && WeatherComponentt["weather"]) {
+    temperature = Math.round(WeatherComponentt["weather"]["main"]["temp"]);
+  }
+
   useFrame(({clock}) => {
-    
+
     const a = clock.getElapsedTime();
     const elapsedTime = clock.getElapsedTime();
     if (earthRef.current) {
-      
+
       // Animate rotation
       earthRef.current.rotation.y += 0.001;
       earthRef.current.rotation.x += 0.001;
-      
+
       // Animate position slowly over time
     // earthRef.current.rotation.x = Math.sin(elapsedTime ) * 0.001; // Slow oscillation on x
     // earthRef.current.rotation.y = Math.cos(elapsedTime ) * 0.001; // Slow oscillation on y
@@ -82,7 +87,7 @@ function Earth() {
     <directionalLight />
     <mesh ref={earthRef} position={[0, 0, -6]}>
     <sphereGeometry args={[5, 32, 32]} />
-      <meshStandardMaterial  
+      <meshStandardMaterial
            map={colorMap} /> {/* Moon Texture */}
     </mesh>
       {/* Temperature Text */}
@@ -104,7 +109,7 @@ function Temperaturetext ()
   const [temperature] = useState(25); // Example temperature value
   return (
     <mesh position={[0, -2, 0]}>
-     
+
         {/* Temperature Text */}
         <Text
      position={[0, 1.5,100]} // Positioned in front of the moon
@@ -114,20 +119,20 @@ function Temperaturetext ()
     anchorY="middle" // Center alignment vertically
   >
     {`${temperature}°C`} {/* Temperature value */}
-  </Text> 
+  </Text>
     </mesh>
 
   );
 }
 function EarthScene() {
-  
+
   return (
     <Canvas
-    
+
       camera={{ position: [0, 0, 5], fov: 75 }}
-      
+
     >
-     
+
        {/* Ambient Light */}
        <ambientLight intensity={0.2} />
 
@@ -144,20 +149,20 @@ function EarthScene() {
 <pointLight position={[-5, 2, 3]} intensity={0.5} color="#ffffff" />
 <spotLight position={[5, 5, 5]} intensity={1} castShadow />
       {/* Earth Mesh */}
-       <Suspense fallback={null}> 
-      
+       <Suspense fallback={null}>
+
       <OrbitControls enableZoom={true}/>
-        
-      </Suspense> 
+
+      </Suspense>
       {/* Orbit Controls */}
       <Earth />
-      
+
       {/* Resize Handler */}
-     
-     
-      
+
+
+
     </Canvas>
-    
+
   );
 }
 
@@ -173,7 +178,7 @@ function ResizeHandler() {
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-    
+
   }, []);
   return null;
 }

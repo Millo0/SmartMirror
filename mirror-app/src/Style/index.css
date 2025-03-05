@@ -26,3 +26,7 @@ button {
   outline: 0;
 }
 
+.MuiPaper-root {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

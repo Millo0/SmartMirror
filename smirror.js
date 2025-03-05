@@ -13,7 +13,7 @@ function creatmainwindow (){
                 preload: path.resolve(__dirname,'./Preload/preload.js'),
       contextIsolation: true, // Secure the context
       nodeIntegration: false, // Disable Node.js in the renderer
-           sandbox: false,    
+           sandbox: false,
             }
         }
     );

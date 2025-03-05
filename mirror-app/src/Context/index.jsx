@@ -41,12 +41,13 @@ export const StateContextProvider = ({ children }) => {
         'x-rapidapi-host': 'weather-api167.p.rapidapi.com',
         Accept: 'application/json'
       }
-    
+
     };
 
     try {
       console.log("Fetching weather for:", place);
       const response = await axios.request(options);
+      console.log("HEHEHHEHEHEHHEHEHE");
       console.log("API Response:", response.data);
 
       const thisData = Object.values(response.data.location[0]);
@@ -55,7 +56,7 @@ export const StateContextProvider = ({ children }) => {
       setValues(thisData.values);
       setWeather(thisData.values[0]);
 
-      
+
       if (response.data && response.data.main) {
         const weatherData = response.data; // Assuming response matches expected structure
         setLocation(weatherData.name || "Unknown");

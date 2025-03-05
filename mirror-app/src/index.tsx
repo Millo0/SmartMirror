@@ -23,22 +23,22 @@ root.render(
        {/*<Dashboardhome />*/}
       {/* <BackgroundLayout/>*/}
       <HashRouter>
-      <StateContextProvider>
+      {/* <StateContextProvider> */}
          {/*<App/>*/}
-      <WeatherComponent/>
-      </StateContextProvider>
+      {/* <WeatherComponent/> */}
+      {/* </StateContextProvider> */}
      <Routes>
-     
+
      <Route  path="/" element={<HomeMirror />} />
         <Route  path="/" element={<HomePage />} />
         <Route  path="/Work" element={<Work />} />
-         
+
          <Route  path="/app" element={<App />}/>
-          
+
          </Routes>
     </HashRouter>
-      
-   </React.StrictMode> 
+
+   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

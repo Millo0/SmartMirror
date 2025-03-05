@@ -4,16 +4,17 @@ import { OrbitControls,useTexture,Text,Effects } from "@react-three/drei";
 import * as THREE from "three";
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
 import { Bloom, EffectComposer, RenderPass,Noise } from '@react-three/postprocessing';
+import WeatherComponent from "../../home_components/weather";
 function Sun() {
   // Ref for the Earth mesh to handle rotation
   const earthRef = useRef();
-  
+
   useFrame(({clock}) => {
-    
+
     const a = clock.getElapsedTime();
     const elapsedTime = clock.getElapsedTime();
     if (earthRef.current) {
-      
+
       // Animate rotation
       earthRef.current.rotation.y += 0.001;
       //earthRef.current.rotation.x += 0.001;
@@ -32,7 +33,7 @@ function Sun() {
     <mesh ref ={earthRef} >
       {/* Geometry and Material */}
       <sphereGeometry args={[1, 64, 64]} /> {/* Sphere for Earth */}
-      <meshStandardMaterial  
+      <meshStandardMaterial
            map={colorMap} emissive={"orange"}
            emissiveIntensity={1.5}
            toneMapped={false} /> {/* Yellow Earth */}
@@ -61,7 +62,7 @@ function Temperaturetext ()
   const [temperature] = useState(25); // Example temperature value
   return (
     <mesh position={[0, -2, 0]}>
-     
+
         {/* Temperature Text */}
         <Text
      position={[0, -0.5, 0]} // Positioned in front of the moon
@@ -71,7 +72,7 @@ function Temperaturetext ()
     anchorY="middle" // Center alignment vertically
   >
     {`${temperature}°C`} {/* Temperature value */}
-  </Text> 
+  </Text>
     </mesh>
 
   );
@@ -171,17 +172,21 @@ function Galaxy() {
 }
 
 function EarthScene() {
-  
+  let temperature = "..";
+  let WeatherComponentt = WeatherComponent();
+  if (WeatherComponentt && WeatherComponentt["weather"]) {
+    temperature = Math.round(WeatherComponentt["weather"]["main"]["temp"]);
+  }
   return (
     <Canvas
-    
+
       camera={{ position: [0, 0, 5], fov: 75 }}
-      
+
     >
-     
- 
+
+
       <OrbitControls enableZoom={true}/>
-        
+
        {/* Ambient and Directional Lights */}
        <ambientLight intensity={0.2} />
       <pointLight position={[0, 0, 0]} intensity={2} color="orange" />
@@ -191,8 +196,17 @@ function EarthScene() {
       <Galaxy />
       {/* Bloom Effects */}
       <EffectsWrapper />
+      <Text
+        position={[0, -2.5, 0]} // Place text in front of and slightly above the moon
+        fontSize={2}
+        color="#ffffff"
+        anchorX="center"
+        anchorY="middle"
+      >
+        {`${temperature}°C`} {/* Display temperature */}
+      </Text>
     </Canvas>
-    
+
   );
 }
 
@@ -208,7 +222,7 @@ function ResizeHandler() {
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-    
+
   }, []);
   return null;
 }

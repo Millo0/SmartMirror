@@ -1,0 +1,19 @@
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+  float: right;
+}
+
+.iframe-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: -1; /* Ensure it stays in the background */
+  /* opacity: 20; */
+}
+
